@@ -16,8 +16,8 @@ function shutdown() {
 }
 
 echo "Making sure there are no old test containers or image available"
-docker stop otp-data-finland || true
-docker stop otp-finland || true
+docker stop otp-data-croatia || true
+docker stop otp-croatia || true
 docker stop otp-data-waltti || true
 docker stop otp-waltti || true
 docker stop otp-data-hsl || true

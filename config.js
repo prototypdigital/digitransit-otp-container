@@ -9,11 +9,19 @@ const src = (id, url, fit, rules) => ({ id, url, fit, rules });
 const CROATIA_CONFIG = {
   id: "croatia",
   src: [
-    src("HZ", "../digitransit-docker/data/otp/croatia/hz.gtfs.zip", false),
-    src("GPP", "../digitransit-docker/data/otp/croatia/gpp.gfs.zip", false),
     src(
-      "FLIXBUS",
-      "../digitransit-docker/data/otp/croatia/flixbus.gtfs.zip",
+      "hz",
+      "https://digitransit.sfo2.digitaloceanspaces.com/hz.gtfs.zip",
+      false
+    ),
+    src(
+      "gpp",
+      "https://digitransit.sfo2.digitaloceanspaces.com/gpp.gtfs.zip",
+      false
+    ),
+    src(
+      "flixbus",
+      "https://digitransit.sfo2.digitaloceanspaces.com/flixbus.gtfs.zip",
       false
     )
   ],
@@ -97,7 +105,7 @@ const configMap = ALL_CONFIGS.map(cfg => cfg.src)
 const osm = [
   {
     id: "croatia",
-    url: "../digitransit-docker/data/otp/croatia/croatia.osm.pbf"
+    url: "https://digitransit.sfo2.digitaloceanspaces.com/croatia.osm.pbf"
   }
 ];
 
