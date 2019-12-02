@@ -9,11 +9,11 @@ const src = (id, url, fit, rules) => ({ id, url, fit, rules });
 const CROATIA_CONFIG = {
   id: "croatia",
   src: [
-    src(
-      "hz",
-      "https://digitransit.sfo2.digitaloceanspaces.com/hz.gtfs.zip",
-      false
-    ),
+    // src(
+    //   "hz",
+    //   "https://digitransit.sfo2.digitaloceanspaces.com/hz.gtfs.zip",
+    //   false
+    // ),
     src(
       "gpp",
       "https://digitransit.sfo2.digitaloceanspaces.com/gpp.gtfs.zip",
@@ -105,7 +105,7 @@ const configMap = ALL_CONFIGS.map(cfg => cfg.src)
 const osm = [
   {
     id: "croatia",
-    url: "https://digitransit.sfo2.digitaloceanspaces.com/croatia.osm.pbf"
+    url: "https://download.geofabrik.de/europe/croatia-latest.osm.pbf"
   }
 ];
 

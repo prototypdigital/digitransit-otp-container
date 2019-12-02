@@ -65,7 +65,7 @@ while true; do
     if [ $SUCCESS = 143 ]; then
         text='** ERROR: Build frozen, restarting'
         echo "$text"
-        post_slack_message "$text"
+        # post_slack_message "$text"
     else
         if [ $SUCCESS -ne 0 ]; then
             echo "** ERROR: Build failed"
