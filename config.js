@@ -7,25 +7,25 @@
 const src = (id, url, fit, rules) => ({ id, url, fit, rules });
 
 const CROATIA_CONFIG = {
-  id: 'croatia',
+  id: "croatia",
   src: [
     src(
-      'hz',
-      'https://digitransit.sfo2.digitaloceanspaces.com/hz.gtfs.zip',
+      "hz",
+      "https://digitransit.sfo2.digitaloceanspaces.com/hz.gtfs.zip",
       false
     ),
     src(
-      'gpp',
-      'https://digitransit.sfo2.digitaloceanspaces.com/gpp.gtfs.zip',
+      "gpp",
+      "https://digitransit.sfo2.digitaloceanspaces.com/gpp.gtfs.zip",
       false
     ),
     src(
-      'flixbus',
-      'https://digitransit.sfo2.digitaloceanspaces.com/flixbus.gtfs.zip',
+      "flixbus",
+      "https://digitransit.sfo2.digitaloceanspaces.com/flixbus.gtfs.zip",
       false
     )
   ],
-  osm: 'croatia'
+  osm: "croatia"
 };
 
 let ALL_CONFIGS;
@@ -33,7 +33,7 @@ let ALL_CONFIGS;
 const setCurrentConfig = name => {
   ALL_CONFIGS = [CROATIA_CONFIG].reduce((acc, nxt) => {
     if (
-      (name && name.split(',').indexOf(nxt.id) !== -1) ||
+      (name && name.split(",").indexOf(nxt.id) !== -1) ||
       name === undefined
     ) {
       acc.push(nxt);
@@ -44,7 +44,7 @@ const setCurrentConfig = name => {
 
 // Allow limiting active configs with env variable
 if (process.env.ROUTERS) {
-  setCurrentConfig(process.env.ROUTERS.replace(/ /g, ''));
+  setCurrentConfig(process.env.ROUTERS.replace(/ /g, ""));
 } else {
   setCurrentConfig();
 }
@@ -104,8 +104,8 @@ const configMap = ALL_CONFIGS.map(cfg => cfg.src)
 
 const osm = [
   {
-    id: 'croatia',
-    url: 'https://download.geofabrik.de/europe/croatia-latest.osm.pbf'
+    id: "croatia",
+    url: "https://download.geofabrik.de/europe/croatia-latest.osm.pbf"
   }
 ];
 
@@ -122,7 +122,7 @@ module.exports = {
     return acc;
   }, {}),
   dataToolImage: `hsldevcom/otp-data-tools:${process.env.TOOLS_TAG ||
-    'latest'}`,
+    "latest"}`,
   dataDir: process.env.DATA || `${process.cwd()}/data`,
   hostDataDir: process.env.HOST_DATA || `${process.cwd()}/data`,
   setCurrentConfig: setCurrentConfig,
