@@ -9,11 +9,7 @@ const src = (id, url, fit, rules) => ({ id, url, fit, rules });
 const CROATIA_CONFIG = {
   id: "croatia",
   src: [
-    src(
-      "hz",
-      "https://digitransit.sfo2.digitaloceanspaces.com/hz.gtfs.zip",
-      false
-    ),
+    src("hz", "http://www.hzpp.hr/Media/Default/GTFS/GTFS_files.zip", false),
     src(
       "gpp",
       "https://digitransit.sfo2.digitaloceanspaces.com/gpp.gtfs.zip",
@@ -23,14 +19,14 @@ const CROATIA_CONFIG = {
       "flixbus",
       "https://digitransit.sfo2.digitaloceanspaces.com/flixbus.gtfs.zip",
       false
-    )
+    ),
   ],
-  osm: "croatia"
+  osm: "croatia",
 };
 
 let ALL_CONFIGS;
 
-const setCurrentConfig = name => {
+const setCurrentConfig = (name) => {
   ALL_CONFIGS = [CROATIA_CONFIG].reduce((acc, nxt) => {
     if (
       (name && name.split(",").indexOf(nxt.id) !== -1) ||
@@ -80,7 +76,7 @@ for (let i = 0; i < ALL_CONFIGS.length; i++) {
 }
 
 // Go through extraSrc keys to find keys that don't already exist in src and add those as new src
-Object.keys(extraSrc).forEach(id => {
+Object.keys(extraSrc).forEach((id) => {
   if (!usedSrc.includes(id)) {
     const routers = extraSrc[id].routers;
     for (let i = 0; i < ALL_CONFIGS.length; i++) {
@@ -93,7 +89,7 @@ Object.keys(extraSrc).forEach(id => {
 });
 
 // create id->src-entry map
-const configMap = ALL_CONFIGS.map(cfg => cfg.src)
+const configMap = ALL_CONFIGS.map((cfg) => cfg.src)
   .reduce((acc, val) => acc.concat(val), [])
   .reduce((acc, val) => {
     if (acc[val.id] === undefined) {
@@ -105,12 +101,12 @@ const configMap = ALL_CONFIGS.map(cfg => cfg.src)
 const osm = [
   {
     id: "croatia",
-    url: "https://download.geofabrik.de/europe/croatia-latest.osm.pbf"
-  }
+    url: "https://download.geofabrik.de/europe/croatia-latest.osm.pbf",
+  },
 ];
 
 const constants = {
-  BUFFER_SIZE: 1024 * 1024 * 32
+  BUFFER_SIZE: 1024 * 1024 * 32,
 };
 
 module.exports = {
@@ -121,10 +117,11 @@ module.exports = {
     acc[val.id] = val;
     return acc;
   }, {}),
-  dataToolImage: `hsldevcom/otp-data-tools:${process.env.TOOLS_TAG ||
-    "latest"}`,
+  dataToolImage: `hsldevcom/otp-data-tools:${
+    process.env.TOOLS_TAG || "latest"
+  }`,
   dataDir: process.env.DATA || `${process.cwd()}/data`,
   hostDataDir: process.env.HOST_DATA || `${process.cwd()}/data`,
   setCurrentConfig: setCurrentConfig,
-  constants
+  constants,
 };
